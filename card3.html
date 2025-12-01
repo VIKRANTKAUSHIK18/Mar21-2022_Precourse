@@ -1,102 +1,277 @@
-<html>
-    <head>
-        <style>
-            body {
-                margin: 0px;
-                background: url("https://wallpaperaccess.com/full/187161.jpg");
-            }
-            #container {
-                background: rgba(0,0,0,0.5);
-                height: 100%;
-                padding: 10px;
-            }
-            #card {
-                width: 300px;
-                background-color: black;
-                margin: 50px auto;
-                padding-bottom: 20px; 
-            }
-            #part1 {
-                text-align: center;
-                background-color: aliceblue;
-                padding: 10px;
-            }
-            img {
-                border-radius: 50%;
-                background-color: black;
-                padding: 3px;
-                margin-top: 10px;
-            }
-            h2 {
-                margin-bottom: 0px;
-            }
-            #p1 {
-                margin: 0px;
-                margin-bottom: 50px;
-            }
-            #part2 {
-                padding: 40px;
-            }
-            table {
-                width: 100%;
-                color:chocolate;
-            }
-            #part3 {
-                text-align: center;
-            }
-            button {
-                background-color: azure;
-                padding: 10px;
-                width: 30%;
-                color: coral;
-                border: none;
-                margin-right: 10px;
-            }
-            #b1 {
-                margin-left: 10px;
-            }
-            #b2 {
-                background-color: aqua;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="container">
-        <div id="card">
-            <div id="part1">
-                <img 
-                src="https://i.pinimg.com/originals/93/d3/e3/93d3e31639a4d07613de9dccdc8bd5e8.png" 
-                width="200px" 
-                height="200px"
-                />
-                <h2>Vikrant Kaushik</h2>
-                <p id="p1">Software Developer</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Prescription - Dr. Arpit Verma</title>
+    <style>
+        /* --- General Setup --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e0e0e0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* --- A4 Paper Container --- */
+        .container {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Header --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 3px solid #0056b3;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .rx-logo {
+            font-size: 60px;
+            font-weight: bold;
+            color: #0056b3;
+            font-style: italic;
+            font-family: 'Times New Roman', serif;
+        }
+        .doctor-info {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .doctor-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #222;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .email-text {
+            font-size: 13px;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        /* --- Patient Info Grid --- */
+        .patient-box {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        .patient-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .detail-row span { font-weight: bold; color: #444; }
+
+        /* --- Section Styling --- */
+        .section { margin-bottom: 25px; }
+        .section-title {
+            font-weight: bold;
+            font-size: 15px;
+            text-transform: uppercase;
+            color: #0056b3;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+
+        /* --- Medicine Table --- */
+        .med-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .med-table td {
+            padding: 8px 5px;
+            vertical-align: top;
+            border-bottom: 1px dashed #eee;
+        }
+        .med-name { font-weight: bold; font-size: 15px; }
+        .med-dose { font-size: 13px; color: #555; margin-top: 2px; }
+
+        /* --- Instructions --- */
+        .instructions {
+            font-size: 13px;
+            line-height: 1.6;
+            background: #f1f8ff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #0056b3;
+            margin-top: 30px;
+            -webkit-print-color-adjust: exact;
+        }
+        .instructions ul { margin-left: 20px; margin-top: 5px; }
+
+        /* --- Signature & Stamp --- */
+        .footer-signature {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            width: 200px;
+            text-align: center;
+        }
+        .stamp-image {
+            width: 130px;
+            height: auto;
+            display: block;
+            margin: 0 auto -25px auto;
+            transform: rotate(-8deg);
+            opacity: 0.9;
+        }
+        .sign-line {
+            border-top: 2px solid #333;
+            margin-top: 15px;
+            padding-top: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* --- Footer Disclaimer --- */
+        .footer-disclaimer {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 5px;
+        }
+
+        /* --- Print Button --- */
+        .print-btn {
+            padding: 10px 20px; background: #007bff; color: white;
+            border: none; border-radius: 5px; cursor: pointer; font-size: 14px;
+            margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; margin: 0; width: 100%; height: auto; padding: 25px; }
+            .print-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">🖨️ Print Prescription</button>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="rx-logo">Rx</div>
+            <div class="doctor-info">
+                <div class="doctor-name">Dr. Arpit Verma</div>
+                <div>MBBS, MD (Medicine), Certification</div>
+                <div><strong>Reg No:</strong> 19/14549</div>
+                <div style="margin-top: 5px;">387/1, Near HDFC Bank, Saket, Meerut, UP</div>
+                <div class="email-text">✉️ dr.arpit@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- Patient Details -->
+        <div class="patient-box">
+            <div class="patient-grid">
+                <div>
+                    <div class="detail-row"><span>Patient Name:</span> Vikrant Kaushik</div>
+                    <div class="detail-row"><span>Age/Sex:</span> 29 Yrs / Male</div>
+                    <div class="detail-row"><span>Phone:</span> 8433252834</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="detail-row"><span>Date:</span> 01 Dec 2025 - 01:49 PM</div>
+                    <div class="detail-row"><span>Ref No:</span> EF0D16748</div>
+                    <div class="detail-row"><span>Address:</span> Baram, Meerut</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diagnosis -->
+        <div class="section">
+            <div class="section-title">Clinical Notes & Diagnosis</div>
+            <div style="font-size: 14px; padding-left: 5px;">
+                <strong>Symptoms (HOP):</strong> Running nose since 3 weeks, Cough with heavy mucus.<br>
+                <strong>Provisional Diagnosis:</strong> Allergic Bronchitis / Suspected Lung Infection.
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div style="display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 30px;">
+            
+            <!-- Lab Tests -->
+            <div>
+                <div class="section-title">Investigations</div>
+                <ul style="font-size: 14px; line-height: 1.8; padding-left: 20px;">
+                    <li>Total IgE Levels (ASAP)</li>
+                    <li>CBC (Complete Blood Count)</li>
+                </ul>
             </div>
 
-            <div id="part2">
-                <table>
+            <!-- Medicines Table -->
+            <div>
+                <div class="section-title">Medicines (Rx)</div>
+                <table class="med-table">
                     <tr>
-                        <th>
-                            <p>50</p>
-                            <p>Posts</p>
-                        </th>
-                        <th>
-                            <p>150</p>
-                            <p>Following</p>
-                        </th>
-                        <th>
-                            <p>250</p>
-                            <p>Followers</p>
-                        </th>
+                        <td>1.</td>
+                        <td>
+                            <div class="med-name">Tab. Ceftas 200mg</div>
+                            <div class="med-dose">Morning 1 - Night 1 (BD) <br> Duration: 5 Days</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>
+                            <div class="med-name">Tab. Montamac AL <small>(Ambroxol+Levocet)</small></div>
+                            <div class="med-dose">Night 1 (HS) <br> Duration: 5 Days</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>
+                            <div class="med-name">Syp. Ascori LS</div>
+                            <div class="med-dose">Morning 1 - Night 1 (5ml) <br> Duration: 5 Days</div>
+                        </td>
                     </tr>
                 </table>
             </div>
+        </div>
 
-            <div id="part3">
-                <button id="b1">Follow</button>
-                <button id="b2">Message</button>
-            </div>
+        <!-- Instructions -->
+        <div class="instructions">
+            <strong>⚠️ General Instructions & Precautions:</strong>
+            <ul>
+                <li><strong>Cover Face:</strong> Wear a mask when going outside to avoid dust/allergens.</li>
+                <li><strong>Diet:</strong> Eat warm food. Avoid cold water, ice cream, oily and spicy food.</li>
+                <li><strong>Therapy:</strong> Take steam inhalation 2-3 times daily.</li>
+                <li><strong>Follow-up:</strong> If symptoms persist, visit the clinic again promptly.</li>
+            </ul>
         </div>
+
+        <!-- Signature & Stamp -->
+        <div class="footer-signature">
+            <img src="https://placehold.co/150x150/png?text=Stamp" alt="Stamp" class="stamp-image">
+            <div class="sign-line">Dr. Arpit Verma</div>
+            <div style="font-size: 11px;">MBBS, MD</div>
         </div>
-    </body>
+
+        <!-- Footer (Cleaned) -->
+        <div class="footer-disclaimer">
+            Emergency? Visit nearest hospital immediately. | Valid for 7 days only.
+        </div>
+    </div>
+
+</body>
 </html>
+
